@@ -1,7 +1,6 @@
 return {
-	"rose-pine/neovim",
-	name = "rose-pine",
+	"dgox16/oldworld.nvim",
 	config = function()
-		vim.cmd("colorscheme rose-pine")
-	end
+    	vim.cmd("colorscheme oldworld")
+	end,
 }
