@@ -1,8 +1,8 @@
 return {
 	{
-		"dgox16/oldworld.nvim",
+		"mellow-theme/mellow.nvim",
 		config = function()
-    		vim.cmd("colorscheme oldworld")
+    		vim.cmd("colorscheme mellow")
 		end,
 	},
 	{

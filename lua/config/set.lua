@@ -1,4 +1,7 @@
 local opt = vim.opt
+local keymap = vim.keymap
+local options = { noremap = true, silent = true }
+
 
 opt.textwidth = 0
 opt.wrapmargin = 0
@@ -7,6 +10,27 @@ opt.relativenumber = true
 opt.autoindent = true
 opt.shiftwidth = 4
 opt.tabstop = 4
+
+function Map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
+keymap.set("n", "ss",  function()
+	vim.cmd("split")
+end, options)
+keymap.set("n", "sv",  function()
+	vim.cmd("vsplit")
+end, options)
+Map("n", "<C-Left>", "<C-w>h")
+Map("n", "<C-Down>", "<C-w>j")
+Map("n", "<C-Up>", "<C-w>k")
+Map("n", "<C-Right>", "<C-w>l")
+
+vim.g.mapleader = " "
 
 vim.lsp.enable('clangd')
 
