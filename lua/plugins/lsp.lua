@@ -3,14 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	{
-		"hardyrafael17/norminette42.nvim",
-		opts = {
-			runOnSave = true,
-			maxErrorsToShow = 5,
-			active = true,
-		}
-	},
-	{
 	"onsails/lspkind.nvim",
 	opts = {
 	mode = "symbol_text",
