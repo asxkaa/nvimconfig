@@ -1,38 +1,53 @@
 return {
 	{
-		"olivercederborg/poimandres.nvim",
-		config = function()
-    		vim.cmd("colorscheme poimandres")
-		end,
+		"dgox16/oldworld.nvim",
+		lazy = false,
+		priority = 1000,
 	},
 	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
-
-		---@type snacks.Config
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			bigfile = { enabled = true },
-			dashboard = { enabled = true },
-			explorer = { enabled = true },	
-			
-			indent = { 
-				prority = 1,
+			animate = {
 				enabled = true,
-				only_scope = true,
-				char = "│",
 			},
-			input = { enabled = true },
-			picker = { enabled = true },
-			notifier = { enabled = true },
-			quickfile = { enabled = true },
-			scope = { enabled = true },
-			scroll = { enabled = true },
-			statuscolumn = { enabled = true },
-			words = { enabled = true },
+			dashboard = {
+				enabled = true,
+				preset = {
+					keys = {
+						{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+						{ icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+						{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+					},
+					header = [[
+                              ▒           
+                             ░█░          
+                           ░█████░        
+     ░░████████░         ░▒███████▓       
+        ░░██████░           ░███░         
+           █░█████░           █░          
+           █  ░█████░                     
+           █    ░█████░                  
+           █     ░░█████░                
+           █        ▒█████░              
+           █         ░▓█████             
+           █░           █████░           
+          ░█▓            ░█████░          
+       ░░▓████░░░           ███░          
+                                          ]],
+				},
+			},
+			scroll = {
+				enabled = true,
+			},
+			statuscolumn = { 
+				enabled = true,
+			},
+			words = {
+				enabled = true,
+			},
 		},
 	},
 	{
@@ -54,6 +69,21 @@ return {
 		'nvim-treesitter/nvim-treesitter',
 		lazy = false,
 		build = ":TSUpdate"
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			enabled = true,
+			indent = {
+				char = "│",
+			},
+			scope = {
+				show_start = false,
+				show_end = false,
+				char = "┃",
+			},
+		},
 	},
 	{
 		'nvim-lualine/lualine.nvim',

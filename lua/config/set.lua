@@ -2,7 +2,6 @@ local opt = vim.opt
 local keymap = vim.keymap
 local options = { noremap = true, silent = true }
 
-
 opt.textwidth = 0
 opt.wrapmargin = 0
 opt.number = true
@@ -19,27 +18,36 @@ function Map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
+vim.g.mapleader = " "
+
 keymap.set("n", "ss",  function()
 	vim.cmd("split")
 end, options)
 keymap.set("n", "sv",  function()
 	vim.cmd("vsplit")
 end, options)
+
+-- Dashboard keymap
+
+keymap.set("n", "<leader>w", function()
+	vim.cmd("wa")
+	vim.cmd("%bd")
+	Snacks.dashboard()
+end, options)
+
 Map("n", "<C-Left>", "<C-w>h")
 Map("n", "<C-Down>", "<C-w>j")
 Map("n", "<C-Up>", "<C-w>k")
 Map("n", "<C-Right>", "<C-w>l")
 
-vim.g.mapleader = " "
-
 vim.lsp.enable('clangd')
 
 vim.diagnostic.config({
-  signs = true,
-  underline = false,
-  update_in_insert = false,
-  virtual_text = true,
-  severity_sort = true,
+	signs = true,
+	underline = false,
+	update_in_insert = false,
+	virtual_text = true,
+	severity_sort = true,
 })
 
 require('lualine').setup {
@@ -47,7 +55,7 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = ' ', right = ' '},
     disabled_filetypes = {
       statusline = {},
       winbar = {},
